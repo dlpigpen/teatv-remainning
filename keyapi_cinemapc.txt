@@ -1,0 +1,1 @@
+{"clientID":"d9e4d5f752bc8a74bdb2121e6d8e5925fc5b100ec59dac188f482268d853e5cd","secretID": "1f34531d2d46d106db656e9e30df44490ebe2b9e02ef11b735d217de9e4e56f2","redirectURI": "https://cinemalpopcorn.com", "apiMovieDBKey": "c15a46b5e69d3eac6c4df6da6fabaa44"}
