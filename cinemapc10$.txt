@@ -1,1 +1,0 @@
-{"data": 1, "cfads": 8, "says": 15, "cep": 4, "kAdmobID": "ca-app-pub-1800539577759190/6745097591", "kAdmobIDFullBanner": "ca-app-pub-1800539577759190/6445714698", "kAdmobIDSmallNativeBanner": "ca-app-pub-1800539577759190/5978810830"}
