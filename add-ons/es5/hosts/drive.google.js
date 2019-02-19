@@ -81,69 +81,51 @@ var GoogleDrive = function () {
         key: 'getLink',
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(url) {
-                var _libs, httpRequest, cheerio, qs, sources, listEncode, id, resultText, _resultText, fmt_stream_map, status, listLink, i;
+                var _libs, httpRequest, cheerio, qs, html, sources;
 
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                _libs = this.libs, httpRequest = _libs.httpRequest, cheerio = _libs.cheerio, qs = _libs.qs;
-                                sources = [];
-                                listEncode = false;
-                                id = url.match(/\/d\/([^\/]+)/i);
-
-                                id = id != null ? id[1] : '';
-
-                                _context2.next = 7;
-                                return this.checkLive(URL.INFO(id));
-
-                            case 7:
-                                resultText = _context2.sent;
-
-                                resultText = qs.parse(resultText);
-                                _resultText = resultText, fmt_stream_map = _resultText.fmt_stream_map, status = _resultText.status;
-                                listLink = fmt_stream_map.split(",");
-
-                                for (i = 0; i < listLink.length; i++) {
-                                    if (listLink[i].indexOf("18|") == 0) {
-                                        sources.push({
-                                            type: "embed",
-                                            size: 'NOR',
-                                            label: "360p",
-                                            file: decodeURIComponent(listLink[i].substring(3))
-                                        });
-                                    }
-                                    if (listLink[i].indexOf("22|") == 0) {
-                                        sources.push({
-                                            type: "embed",
-                                            size: 'NOR',
-                                            label: "720p",
-                                            file: decodeURIComponent(listLink[i].substring(3))
-                                        });
-                                    }
-
-                                    if (listLink[i].indexOf("59|") == 0) {
-                                        sources.push({
-                                            type: "embed",
-                                            size: 'NOR',
-                                            label: "480p",
-                                            file: decodeURIComponent(listLink[i].substring(3))
-                                        });
-                                    }
-                                    if (listLink[i].indexOf("37|") == 0) {
-                                        sources.push({
-                                            type: "embed",
-                                            size: 'NOR',
-                                            label: "1080p",
-                                            file: decodeURIComponent(listLink[i].substring(3))
-                                        });
-                                    }
+                                if (!(url.indexOf('http://') != 0 && url.indexOf('https://') != 0)) {
+                                    _context2.next = 2;
+                                    break;
                                 }
+
+                                throw new Error('NOT_FOUND');
+
+                            case 2:
+                                _libs = this.libs, httpRequest = _libs.httpRequest, cheerio = _libs.cheerio, qs = _libs.qs;
+                                _context2.next = 5;
+                                return httpRequest.getHTML(url);
+
+                            case 5:
+                                html = _context2.sent;
+
+                                if (!(html.indexOf('fmt_stream_map') == -1)) {
+                                    _context2.next = 9;
+                                    break;
+                                }
+
+                                console.log('drive_log, drive error', url);
+                                throw new Error('NOT_FOUND');
+
+                            case 9:
+                                console.log('drive_log, drive ok', url);
+
+                                sources = [];
+
+                                sources.push({
+                                    type: "direct",
+                                    size: 'NOR',
+                                    label: "1080p",
+                                    file: url
+                                });
 
                                 return _context2.abrupt('return', {
                                     host: {
                                         url: url,
-                                        name: "googledrive"
+                                        name: "GoogleDrive"
                                     },
                                     result: sources
                                 });

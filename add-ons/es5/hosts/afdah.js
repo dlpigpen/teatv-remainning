@@ -172,16 +172,15 @@ var Afdah = function () {
                                 throw new Error("LINK DIE");
 
                             case 6:
-                                decryp = html.match(/decrypt\(\"([^\"]+)/i);
+                                decryp = html.match(/salt\(\"([^\"]+)/i);
 
-                                decryp = decryp != null ? decryp[1] : '';
 
-                                decryp = decrypt(decryp);
+                                decryp = decrypt(decryp[1]);
                                 decryp = decryp.match(/sources *: *\[([^\]]+)/i);
                                 decryp = decryp != null ? decryp[1] : '';
 
                                 if (!(decryp != '')) {
-                                    _context3.next = 18;
+                                    _context3.next = 17;
                                     break;
                                 }
 
@@ -189,7 +188,6 @@ var Afdah = function () {
 
 
                                 decryp = eval("[" + decryp + "]");
-
                                 arrPromise = decryp.map(function () {
                                     var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(value) {
                                         var isDie;
@@ -197,10 +195,12 @@ var Afdah = function () {
                                             while (1) {
                                                 switch (_context2.prev = _context2.next) {
                                                     case 0:
-                                                        _context2.next = 2;
+
+                                                        if (value.file.indexOf('http') != 0) value.file = 'https://afdah.info' + value.file;
+                                                        _context2.next = 3;
                                                         return httpRequest.isLinkDie(value.file);
 
-                                                    case 2:
+                                                    case 3:
                                                         isDie = _context2.sent;
 
 
@@ -209,12 +209,12 @@ var Afdah = function () {
                                                             sources.push({
                                                                 label: 'NOR',
                                                                 file: value.file,
-                                                                type: "embed",
+                                                                type: "direct",
                                                                 size: (Math.random() * (2.2 - 1.9) + 1.9).toFixed(2)
                                                             });
                                                         }
 
-                                                    case 4:
+                                                    case 5:
                                                     case "end":
                                                         return _context2.stop();
                                                 }
@@ -226,19 +226,19 @@ var Afdah = function () {
                                         return _ref3.apply(this, arguments);
                                     };
                                 }());
-                                _context3.next = 17;
+                                _context3.next = 16;
                                 return Promise.all(arrPromise);
 
-                            case 17:
+                            case 16:
                                 return _context3.abrupt("return", {
                                     host: {
                                         url: url,
-                                        name: "afdah"
+                                        name: "Googlevideo"
                                     },
                                     result: sources
                                 });
 
-                            case 18:
+                            case 17:
                             case "end":
                                 return _context3.stop();
                         }

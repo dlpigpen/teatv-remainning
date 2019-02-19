@@ -12,12 +12,12 @@ var URL = {
         return 'http://m4ufree.tv/search/' + title + '.html';
         //return `http://m4ufree.com/search/${title}-m4ufree.html`;
     },
-    AJAX_URL: 'http://m4ufree.tv/ajax_new.php',
+    AJAX_URL: 'http://m4ufree.tv/ajax',
+    AJAX_URL_TV: 'http://m4ufree.tv/ajaxtv',
     HEADERS: function HEADERS(ref) {
         return {
             'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
             'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
-            'Origin': 'http://m4ufree.com',
             'Accept-Language': 'en-US,en;q=0.9,vi;q=0.8',
             'X-Requested-With': 'XMLHttpRequest',
             'Referer': ref
@@ -76,10 +76,11 @@ var M4u = function () {
                                     }
                                 });
 
+                                if (detailUrl.indexOf('http://') != 0 && detailUrl.indexOf('https://') != 0) detailUrl = URL.DOMAIN + '/' + detailUrl;
                                 this.state.detailUrl = detailUrl;
                                 return _context.abrupt('return');
 
-                            case 13:
+                            case 14:
                             case 'end':
                                 return _context.stop();
                         }
@@ -97,30 +98,101 @@ var M4u = function () {
         key: 'getHostFromDetail',
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-                var _libs2, httpRequest, cheerio, base64, hosts, keys, detailUrl, htmlDetail, $, item, arrPromise;
+                var _libs2, httpRequest, cheerio, base64, _movieInfo2, title, type, season, episode, hosts, keys, detailUrl, url, htmlDetail, html, token, $_1, _headers, _headers_arr, key, cookies, headers, idepisode, poststv, $, item, arrPromise;
 
                 return regeneratorRuntime.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
                                 _libs2 = this.libs, httpRequest = _libs2.httpRequest, cheerio = _libs2.cheerio, base64 = _libs2.base64;
+                                _movieInfo2 = this.movieInfo, title = _movieInfo2.title, type = _movieInfo2.type, season = _movieInfo2.season, episode = _movieInfo2.episode;
 
                                 if (this.state.detailUrl) {
-                                    _context3.next = 3;
+                                    _context3.next = 4;
                                     break;
                                 }
 
                                 throw new Error("NOT_FOUND");
 
-                            case 3:
+                            case 4:
                                 hosts = [];
                                 keys = [];
                                 detailUrl = this.state.detailUrl;
-                                _context3.next = 8;
+                                url = detailUrl;
+
+                                if (!(url.indexOf('http://') != 0 && url.indexOf('https://') != 0)) {
+                                    _context3.next = 10;
+                                    break;
+                                }
+
+                                throw new Error('NOT_FOUND');
+
+                            case 10:
+                                _context3.next = 12;
                                 return httpRequest.get(this.state.detailUrl);
 
-                            case 8:
+                            case 12:
                                 htmlDetail = _context3.sent;
+
+                                //console.log('m4u', htmlDetail.data.substr(0, 200));
+                                html = htmlDetail.data.match(/name="csrf-token" content="([^"]+)/);
+
+                                if (!(html == null)) {
+                                    _context3.next = 16;
+                                    break;
+                                }
+
+                                throw new Error('NO_TOKEN');
+
+                            case 16:
+                                token = html[1];
+                                $_1 = cheerio.load(htmlDetail.data);
+                                _headers = htmlDetail.headers;
+                                _headers_arr = [];
+
+                                for (key in _headers) {
+                                    if (key == 'set-cookie') _headers_arr[key] = _headers[key];
+                                }cookies = _headers_arr['set-cookie'].join('; ');
+                                headers = URL.HEADERS(detailUrl);
+
+                                if (!(type == 'tv')) {
+                                    _context3.next = 33;
+                                    break;
+                                }
+
+                                idepisode = void 0;
+
+                                $_1('.episode').each(function () {
+                                    var episode_name = $_1(this).text();
+                                    var epi_r = episode_name.match(/S([0-9]+)-E([0-9]+)/i);
+                                    var _season = +epi_r[1];
+                                    var _episode = +epi_r[2];
+
+                                    if (_season == season && _episode == episode) {
+                                        idepisode = $_1(this).attr('idepisode');
+                                    }
+                                });
+
+                                if (!(idepisode == null)) {
+                                    _context3.next = 28;
+                                    break;
+                                }
+
+                                throw new Error('NOT_FOUND_TV');
+
+                            case 28:
+                                headers['cookie'] = cookies;
+                                poststv = {
+                                    _token: token,
+                                    idepisode: idepisode
+                                };
+                                _context3.next = 32;
+                                return httpRequest.post(URL.AJAX_URL_TV, headers, poststv);
+
+                            case 32:
+                                htmlDetail = _context3.sent;
+
+                            case 33:
                                 $ = cheerio.load(htmlDetail.data);
                                 item = $('.le-server .singlemv');
 
@@ -139,26 +211,28 @@ var M4u = function () {
                                                     case 0:
                                                         htmlData = { data: '' };
                                                         _context2.prev = 1;
-                                                        posts = { m4u: links };
-                                                        _context2.next = 5;
-                                                        return httpRequest.post(URL.AJAX_URL, URL.HEADERS(detailUrl), posts);
+                                                        posts = { m4u: links, _token: token };
 
-                                                    case 5:
+                                                        headers['cookie'] = cookies;
+                                                        _context2.next = 6;
+                                                        return httpRequest.post(URL.AJAX_URL, headers, posts);
+
+                                                    case 6:
                                                         htmlData = _context2.sent;
-                                                        _context2.next = 10;
+                                                        _context2.next = 12;
                                                         break;
 
-                                                    case 8:
-                                                        _context2.prev = 8;
+                                                    case 9:
+                                                        _context2.prev = 9;
                                                         _context2.t0 = _context2['catch'](1);
 
-                                                    case 10:
+                                                        console.log('e', _context2.t0);
+
+                                                    case 12:
                                                         html = htmlData.data;
-                                                        linkEmbed = html.match(/src\=\"([^\"]+)/i);
+                                                        //console.log(html, 'ff', htmlData, 'linkEmbed');
 
-                                                        linkEmbed = linkEmbed != null ? linkEmbed[1] : false;
-
-                                                        if (!(linkEmbed.search('them4ufree.com') != -1)) {
+                                                        if (!(html == undefined)) {
                                                             _context2.next = 15;
                                                             break;
                                                         }
@@ -166,15 +240,43 @@ var M4u = function () {
                                                         return _context2.abrupt('return', false);
 
                                                     case 15:
-                                                        if (!(linkEmbed.search('openx.tv') != -1)) {
-                                                            _context2.next = 22;
+                                                        linkEmbed = html.match(/src\=\"([^\"]+)/i);
+
+                                                        linkEmbed = linkEmbed != null ? linkEmbed[1] : false;
+
+                                                        if (linkEmbed) {
+                                                            _context2.next = 19;
                                                             break;
                                                         }
 
-                                                        _context2.next = 18;
+                                                        return _context2.abrupt('return', false);
+
+                                                    case 19:
+                                                        if (!(linkEmbed.indexOf('http://') != 0 && linkEmbed.indexOf('https://') != 0)) {
+                                                            _context2.next = 21;
+                                                            break;
+                                                        }
+
+                                                        return _context2.abrupt('return', false);
+
+                                                    case 21:
+                                                        if (!(linkEmbed.search('them4ufree.com') != -1)) {
+                                                            _context2.next = 25;
+                                                            break;
+                                                        }
+
+                                                        return _context2.abrupt('return', false);
+
+                                                    case 25:
+                                                        if (!(linkEmbed.search('openx.tv') != -1)) {
+                                                            _context2.next = 32;
+                                                            break;
+                                                        }
+
+                                                        _context2.next = 28;
                                                         return httpRequest.getRedirectUrl(linkEmbed);
 
-                                                    case 18:
+                                                    case 28:
                                                         reUrl = _context2.sent;
 
                                                         reUrl && hosts.push({
@@ -188,42 +290,43 @@ var M4u = function () {
                                                                 type: "embed"
                                                             }
                                                         });
-                                                        _context2.next = 23;
+                                                        _context2.next = 33;
                                                         break;
 
-                                                    case 22:
+                                                    case 32:
                                                         linkEmbed && hosts.push({
                                                             provider: {
                                                                 url: detailUrl,
                                                                 name: "m4ufree"
                                                             },
                                                             result: {
-                                                                file: linkEmbed,
+                                                                file: linkEmbed.replace('/preview', '/edit'),
                                                                 label: "embed",
-                                                                type: "embed"
+                                                                type: linkEmbed.indexOf('drive.google') != -1 ? "direct" : "embed"
                                                             }
                                                         });
 
-                                                    case 23:
+                                                    case 33:
                                                     case 'end':
                                                         return _context2.stop();
                                                 }
                                             }
-                                        }, _callee2, this, [[1, 8]]);
+                                        }, _callee2, this, [[1, 9]]);
                                     }));
 
                                     return function (_x) {
                                         return _ref3.apply(this, arguments);
                                     };
                                 }());
-                                _context3.next = 15;
+                                _context3.next = 39;
                                 return Promise.all(arrPromise);
 
-                            case 15:
+                            case 39:
+                                //console.log(hosts, 'hostsm4u');
                                 this.state.hosts = hosts;
                                 return _context3.abrupt('return');
 
-                            case 17:
+                            case 41:
                             case 'end':
                                 return _context3.stop();
                         }

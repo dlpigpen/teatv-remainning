@@ -60,7 +60,7 @@ var Wordpress = function () {
                                 return _context.abrupt('return', {
                                     host: {
                                         url: url,
-                                        name: "Wordpress"
+                                        name: "Direct"
                                     },
                                     result: results
                                 });

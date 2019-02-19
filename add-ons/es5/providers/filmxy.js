@@ -40,7 +40,7 @@ var Filmxy = function () {
         key: 'searchDetail',
         value: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                var _libs, httpRequest, cheerio, stringHelper, qs, _movieInfo, title, year, season, episode, type, detailUrl, urlSearch, resultSearch, $;
+                var _libs, httpRequest, cheerio, stringHelper, qs, _movieInfo, title, year, season, episode, type, detailUrl, urlSearch, resultSearch, js, i, t;
 
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
@@ -51,30 +51,57 @@ var Filmxy = function () {
                                 detailUrl = false;
                                 urlSearch = URL.SEARCH(stringHelper.convertToSearchQueryString(title, '+'));
                                 _context.next = 6;
-                                return httpRequest.getHTML(urlSearch, URL.HEADERS(URL.DOMAIN));
+                                return httpRequest.getHTML('https://cdn.filmxy.one/asset/json/posts.json', URL.HEADERS(URL.DOMAIN));
 
                             case 6:
                                 resultSearch = _context.sent;
-                                $ = cheerio.load(resultSearch);
 
-                                $('.single-post').each(function () {
 
-                                    var hrefMovie = $(this).find('.post-thumbnail a').attr('href');
-                                    var titleMovie = $(this).find('.post-title h2').text();
-                                    var m = titleMovie.match(/(.*)\s(\(([0-9]{4})\))/);
-                                    var yearMovie = m != undefined ? m[3] : 2018;
-                                    titleMovie = m != undefined ? m[1] : '';
-
-                                    if (stringHelper.shallowCompare(titleMovie, title) && year == yearMovie) {
+                                /*
+                                let $ = cheerio.load(resultSearch);
+                                $('.single-post').each(function() {
+                                     let hrefMovie   = $(this).find('.post-thumbnail a').attr('href');
+                                    let titleMovie  = $(this).find('.post-title h2').text();
+                                    let m           = titleMovie.match(/(.*)\s(\(([0-9]{4})\))/);
+                                    let yearMovie   = (m != undefined) ? m[3] : 2018;
+                                    titleMovie      = (m != undefined) ? m[1] : '';
+                                     if( stringHelper.shallowCompare(titleMovie, title) && year == yearMovie ) {
                                         detailUrl = hrefMovie;
                                     }
+                                    
                                 });
+                                */
+                                js = JSON.parse(resultSearch);
+                                i = 0;
+
+                            case 9:
+                                if (!(i < js.length)) {
+                                    _context.next = 17;
+                                    break;
+                                }
+
+                                t = js[i]['name'].toLowerCase();
+
+                                if (!(t.indexOf(title.toLowerCase()) != -1 && t.indexOf(year) != -1)) {
+                                    _context.next = 14;
+                                    break;
+                                }
+
+                                detailUrl = js[i]['link'].replace('cdn.', 'www.');
+                                return _context.abrupt('break', 17);
+
+                            case 14:
+                                i++;
+                                _context.next = 9;
+                                break;
+
+                            case 17:
 
                                 this.state.detailUrl = detailUrl;
 
                                 return _context.abrupt('return');
 
-                            case 11:
+                            case 19:
                             case 'end':
                                 return _context.stop();
                         }
@@ -92,7 +119,7 @@ var Filmxy = function () {
         key: 'getHostFromDetail',
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-                var _libs2, httpRequest, cheerio, qs, hosts, type, htmlDetail, detailUrl, alloweds, m, i, l;
+                var _libs2, httpRequest, cheerio, qs, hosts, type, htmlDetail, detailUrl, url, alloweds, m, i, l;
 
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
@@ -116,6 +143,16 @@ var Filmxy = function () {
                             case 7:
                                 htmlDetail = _context2.sent;
                                 detailUrl = this.state.detailUrl;
+                                url = detailUrl;
+
+                                if (!(url.indexOf('http://') != 0 && url.indexOf('https://') != 0)) {
+                                    _context2.next = 12;
+                                    break;
+                                }
+
+                                throw new Error('NOT_FOUND');
+
+                            case 12:
                                 alloweds = ['vidoza.net', 'streamango.com', 'www.rapidvideo.com', 'ok.ru'];
                                 m = htmlDetail.split('&quot;');
 
@@ -140,7 +177,7 @@ var Filmxy = function () {
 
                                 this.state.hosts = hosts;
 
-                            case 13:
+                            case 16:
                             case 'end':
                                 return _context2.stop();
                         }

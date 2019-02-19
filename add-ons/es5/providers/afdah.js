@@ -7,11 +7,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var URL = {
-    DOMAIN: "https://afdah.to",
-    SEARCH: 'https://afdah.to/wp-content/themes/afdah/ajax-search2.php',
+    DOMAIN: "https://afdah.info",
+    SEARCH: 'https://search.afdah.info/',
     HEADERS: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Origin': 'http://afdah.to',
+        'Origin': 'https://afdah.info',
         'Accept-Language': 'vi-VN,vi;q=0.8,fr-FR;q=0.6,fr;q=0.4,en-US;q=0.2,en;q=0.2',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
         'Accept': '*/*',
@@ -88,7 +88,7 @@ var Afdah = function () {
         key: 'getHostFromDetail',
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-                var _libs2, httpRequest, cheerio, hosts, detailUrl, htmlDetail, $, servers;
+                var _libs2, httpRequest, cheerio, hosts, detailUrl, htmlDetail, $;
 
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
@@ -112,52 +112,27 @@ var Afdah = function () {
                             case 7:
                                 htmlDetail = _context2.sent;
                                 $ = cheerio.load(htmlDetail.data);
-                                servers = ['cont_1', 'cont_3', 'cont_4', 'cont_5'];
 
 
-                                servers.forEach(function (item) {
+                                $('iframe').each(function () {
 
-                                    if (item == 'cont_5') {
-
-                                        $('#cont_5 div table').each(function () {
-
-                                            var embed = $(this).find('a').attr('href');
-                                            hosts.push({
-                                                provider: {
-                                                    url: detailUrl,
-                                                    name: "afdah"
-                                                },
-                                                result: {
-                                                    file: embed,
-                                                    label: "embed",
-                                                    type: "embed"
-                                                }
-                                            });
-                                        });
-                                    } else {
-
-                                        var embed = $('#' + item + ' .jw-player').attr('data-id');
-                                        if (embed != undefined) {
-
-                                            embed = URL.DOMAIN + embed;
-                                            hosts.push({
-                                                provider: {
-                                                    url: detailUrl,
-                                                    name: "afdah"
-                                                },
-                                                result: {
-                                                    file: embed,
-                                                    label: "embed",
-                                                    type: "embed"
-                                                }
-                                            });
+                                    var ifsrc = $(this).attr('src');
+                                    if (ifsrc.indexOf('/trailer/') == -1) hosts.push({
+                                        provider: {
+                                            url: detailUrl,
+                                            name: "afdah"
+                                        },
+                                        result: {
+                                            file: ifsrc,
+                                            label: "embed",
+                                            type: "embed"
                                         }
-                                    }
+                                    });
                                 });
 
                                 this.state.hosts = hosts;
 
-                            case 12:
+                            case 11:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -178,7 +153,7 @@ var Afdah = function () {
 
 thisSource.function = function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(libs, movieInfo, settings) {
-        var httpRequest, source, bodyPost;
+        var httpRequest, source, bodyPost, res, js, hosts;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
                 switch (_context3.prev = _context3.next) {
@@ -190,7 +165,7 @@ thisSource.function = function () {
                             settings: settings
                         });
                         bodyPost = {
-                            name_source: 'Afdah',
+                            name_source: 'afdah',
                             is_link: 0,
                             type: movieInfo.type,
                             season: movieInfo.season,
@@ -199,31 +174,51 @@ thisSource.function = function () {
                             year: movieInfo.year
                         };
                         _context3.next = 5;
-                        return source.searchDetail();
+                        return httpRequest.post('https://vtt.teatv.net/source/get', {}, bodyPost);
 
                     case 5:
+                        res = _context3.sent;
+                        js = void 0, hosts = [];
 
-                        if (!source.state.detailUrl) {
-                            bodyPost.is_link = 0;
-                        } else {
-                            bodyPost.is_link = 1;
+
+                        try {
+                            res = res['data'];
+                            if (res['status']) {
+                                hosts = JSON.parse(res['hosts']);
+                            }
+                        } catch (err) {
+                            console.log('err', err);
                         }
-                        _context3.next = 8;
+
+                        if (!(hosts.length == 0)) {
+                            _context3.next = 19;
+                            break;
+                        }
+
+                        _context3.next = 11;
+                        return source.searchDetail();
+
+                    case 11:
+                        _context3.next = 13;
                         return source.getHostFromDetail();
 
-                    case 8:
+                    case 13:
+                        hosts = source.state.hosts;
 
-                        if (source.state.hosts.length == 0) {
-                            bodyPost.is_link = 0;
-                        } else {
-                            bodyPost.is_link = 1;
+                        if (!(hosts.length > 0)) {
+                            _context3.next = 19;
+                            break;
                         }
 
-                        //await httpRequest.post('https://api.teatv.net/api/v2/mns', {}, bodyPost);
+                        bodyPost['hosts'] = JSON.stringify(hosts);
+                        bodyPost['expired'] = 1800;
+                        _context3.next = 19;
+                        return httpRequest.post('https://vtt.teatv.net/source/set', {}, bodyPost);
 
-                        return _context3.abrupt('return', source.state.hosts);
+                    case 19:
+                        return _context3.abrupt('return', hosts);
 
-                    case 10:
+                    case 20:
                     case 'end':
                         return _context3.stop();
                 }

@@ -42,7 +42,7 @@ var Defaulthost = function () {
                             case 9:
                                 isEmbed = _context.sent;
 
-                                if (!(JSON.stringify(isEmbed).indexOf('video/mp4') == -1)) {
+                                if (!(JSON.stringify(isEmbed).indexOf('video/mp4') == -1 && JSON.stringify(isEmbed).indexOf('application/octet-stream') == -1)) {
                                     _context.next = 12;
                                     break;
                                 }
@@ -50,7 +50,7 @@ var Defaulthost = function () {
                                 return _context.abrupt('return', {
                                     host: {
                                         url: url,
-                                        name: "CDN OK"
+                                        name: "Direct"
                                     },
                                     result: []
                                 });
@@ -64,21 +64,26 @@ var Defaulthost = function () {
 
                             case 17:
                                 isDie = _context.sent;
-                                _context.next = 22;
+                                _context.next = 23;
                                 break;
 
                             case 20:
                                 _context.prev = 20;
                                 _context.t0 = _context['catch'](14);
+                                throw new Error('NOT_FOUND_ERR');
 
-                            case 22:
+                            case 23:
 
-                                if (isDie != false && isDie != 'NOR') {
+                                console.log('isDie', isDie);
 
-                                    results.push({
-                                        file: url, label: 'NOR', type: "direct", size: isDie
-                                    });
+                                if (!(isDie != false && isDie != 'NOR')) {
+                                    _context.next = 27;
+                                    break;
                                 }
+
+                                results.push({
+                                    file: url, label: 'NOR', type: "direct", size: isDie
+                                });
 
                                 return _context.abrupt('return', {
                                     host: {
@@ -88,7 +93,10 @@ var Defaulthost = function () {
                                     result: results
                                 });
 
-                            case 24:
+                            case 27:
+                                throw new Error('NOT_FOUND');
+
+                            case 28:
                             case 'end':
                                 return _context.stop();
                         }

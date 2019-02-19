@@ -159,7 +159,7 @@ var Streamango = function () {
   _createClass(Streamango, [{
     key: "getQuality",
     value: function getQuality(url) {
-      var qualities = ['CAM', 'DVDRip', 'HDTV', 'HDRip', 'WEB-DL', 'WEBRip', 'BRRip', 'Blu-ray', 'BDRip', 'WEB', 'HDTS', 'TS'];
+      var qualities = ['DVDRip', 'HDTV', 'HDRip', 'WEB-DL', 'WEBRip', 'BRRip', 'Bluray', 'Blu-ray', 'BDRip', 'WEB', 'HDTS', 'TS', 'CAM'];
 
       for (var i in qualities) {
         var quality = qualities[i];
@@ -179,7 +179,7 @@ var Streamango = function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(url.indexOf('http://') != 0 && url.indexOf('https://') != 0)) {
+                if (!(url.indexOf('https://') != 0)) {
                   _context.next = 2;
                   break;
                 }
@@ -235,7 +235,7 @@ var Streamango = function () {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (!(url.indexOf('http://') != 0 && url.indexOf('https://') != 0)) {
+                if (!(url.indexOf('https://') != 0)) {
                   _context3.next = 2;
                   break;
                 }

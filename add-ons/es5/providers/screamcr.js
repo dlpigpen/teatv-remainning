@@ -11,8 +11,8 @@ var URL = {
     SEARCH: function SEARCH(title) {
         return 'https://scr.cr/search.php?query=' + title;
     },
-    GET_SOURCE: function GET_SOURCE(eid) {
-        return 'https://ajax.embed.is/heartbypass/get-source.php?eid=' + eid + '&hmac=646679318296d72f5285f7cc3e6a6b8c%2F9c2Jt8%3D';
+    GET_SOURCE: function GET_SOURCE(mid, slug, t) {
+        return 'https://scr.cr/ALPHA-source.php?eid=&get=' + slug + '&mid=' + mid + '&type=movie&t=' + t;
     },
     HEADERS: function HEADERS(referer) {
         return {
@@ -95,7 +95,7 @@ var Screamcr = function () {
         key: 'getHostFromDetail',
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-                var _libs2, httpRequest, cheerio, qs, _movieInfo2, title, year, season, episode, type, hosts, detailUrl, htmlDetail, $, eid, sources, jsonSources, arrPromise;
+                var _libs2, httpRequest, cheerio, qs, _movieInfo2, title, year, season, episode, type, hosts, detailUrl, url, m, mid, slug, ts, t, sources, jsonSources, arrPromise;
 
                 return regeneratorRuntime.wrap(function _callee3$(_context3) {
                     while (1) {
@@ -114,65 +114,50 @@ var Screamcr = function () {
                             case 4:
                                 hosts = [];
                                 detailUrl = this.state.detailUrl;
-                                _context3.next = 8;
-                                return httpRequest.getHTML(this.state.detailUrl, URL.HEADERS(detailUrl));
+                                url = detailUrl;
 
-                            case 8:
-                                htmlDetail = _context3.sent;
-                                $ = cheerio.load(htmlDetail);
-                                eid = false;
-
-                                $('.wpb-content .wpbc-server .ulclear a').each(function () {
-                                    if (type == 'movie') eid = $(this).attr('data-eid');else {
-                                        var ename = $(this).text();
-                                        var m = ename.match(/Episode ([0-9]+):/i);
-                                        if (m != undefined) {
-                                            var seasonEpisode = +m[1] + 0;
-
-                                            if (seasonEpisode == episode) {
-                                                eid = $(this).attr('data-eid');
-                                            }
-                                        }
-                                    }
-                                });
-
-                                if (eid) {
-                                    _context3.next = 14;
+                                if (!(url.indexOf('http://') != 0 && url.indexOf('https://') != 0)) {
+                                    _context3.next = 9;
                                     break;
                                 }
 
                                 throw new Error('NOT_FOUND');
 
-                            case 14:
-                                _context3.next = 16;
-                                return httpRequest.getHTML(URL.GET_SOURCE(eid), URL.HEADERS(detailUrl));
+                            case 9:
+                                m = detailUrl.match(/\/([0-9]+)-(.*)/);
+                                mid = m[1];
+                                slug = m[2];
+                                ts = Math.floor(Date.now() / 1000);
+                                t = ts % 10000;
 
-                            case 16:
+
+                                console.log(URL.GET_SOURCE(mid, slug, t));
+                                _context3.next = 17;
+                                return httpRequest.getHTML(URL.GET_SOURCE(mid, slug, t), URL.HEADERS(detailUrl));
+
+                            case 17:
                                 sources = _context3.sent;
                                 jsonSources = JSON.parse(sources);
                                 arrPromise = jsonSources['sources'].map(function () {
                                     var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(val) {
-                                        var domain;
+                                        var s;
                                         return regeneratorRuntime.wrap(function _callee2$(_context2) {
                                             while (1) {
                                                 switch (_context2.prev = _context2.next) {
                                                     case 0:
-                                                        domain = val['file'].split('/')[2];
-                                                        //console.log(domain);
+                                                        s = val['file'];
 
-                                                        if (['ca3.watchasap.ru', 'embedis.azureedge.net'].includes(domain)) {
-                                                            hosts.push({
-                                                                provider: {
-                                                                    url: detailUrl,
-                                                                    name: "scream"
-                                                                },
-                                                                result: {
-                                                                    file: val['file'],
-                                                                    label: "embed",
-                                                                    type: "direct"
-                                                                }
-                                                            });
-                                                        }
+                                                        if (s.indexOf('google') != -1) hosts.push({
+                                                            provider: {
+                                                                url: detailUrl,
+                                                                name: "scream"
+                                                            },
+                                                            result: {
+                                                                file: val['file'],
+                                                                label: "embed",
+                                                                type: "embed"
+                                                            }
+                                                        });
 
                                                     case 2:
                                                     case 'end':
@@ -186,14 +171,14 @@ var Screamcr = function () {
                                         return _ref3.apply(this, arguments);
                                     };
                                 }());
-                                _context3.next = 21;
+                                _context3.next = 22;
                                 return Promise.all(arrPromise);
 
-                            case 21:
+                            case 22:
 
                                 this.state.hosts = hosts;
 
-                            case 22:
+                            case 23:
                             case 'end':
                                 return _context3.stop();
                         }
@@ -214,7 +199,7 @@ var Screamcr = function () {
 
 thisSource.function = function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(libs, movieInfo, settings) {
-        var httpRequest, source, bodyPost;
+        var httpRequest, source, bodyPost, res, js, hosts;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
             while (1) {
                 switch (_context4.prev = _context4.next) {
@@ -235,31 +220,51 @@ thisSource.function = function () {
                             year: movieInfo.year
                         };
                         _context4.next = 5;
-                        return source.searchDetail();
+                        return httpRequest.post('https://vtt.teatv.net/source/get', {}, bodyPost);
 
                     case 5:
+                        res = _context4.sent;
+                        js = void 0, hosts = [];
 
-                        if (!source.state.detailUrl) {
-                            bodyPost.is_link = 0;
-                        } else {
-                            bodyPost.is_link = 1;
+
+                        try {
+                            res = res['data'];
+                            if (res['status']) {
+                                hosts = JSON.parse(res['hosts']);
+                            }
+                        } catch (err) {
+                            console.log('err', err);
                         }
-                        _context4.next = 8;
+
+                        if (!(hosts.length == 0)) {
+                            _context4.next = 19;
+                            break;
+                        }
+
+                        _context4.next = 11;
+                        return source.searchDetail();
+
+                    case 11:
+                        _context4.next = 13;
                         return source.getHostFromDetail();
 
-                    case 8:
+                    case 13:
+                        hosts = source.state.hosts;
 
-                        if (source.state.hosts.length == 0) {
-                            bodyPost.is_link = 0;
-                        } else {
-                            bodyPost.is_link = 1;
+                        if (!(hosts.length > 0)) {
+                            _context4.next = 19;
+                            break;
                         }
 
-                        //await httpRequest.post('https://api.teatv.net/api/v2/mns', {}, bodyPost);
+                        bodyPost['hosts'] = JSON.stringify(hosts);
+                        bodyPost['expired'] = 1800;
+                        _context4.next = 19;
+                        return httpRequest.post('https://vtt.teatv.net/source/set', {}, bodyPost);
 
-                        return _context4.abrupt('return', source.state.hosts);
+                    case 19:
+                        return _context4.abrupt('return', hosts);
 
-                    case 10:
+                    case 20:
                     case 'end':
                         return _context4.stop();
                 }

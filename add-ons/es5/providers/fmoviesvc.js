@@ -7,21 +7,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var URL = {
-    DOMAIN: 'http://www3.fmovies.cloud',
+    DOMAIN: 'http://www4.fmovies.cloud',
     SEARCH: function SEARCH(title) {
-        return 'http://www3.fmovies.cloud/movie/search/' + title;
+        return 'http://www4.fmovies.cloud/movie/search/' + title;
     },
     DOMAIN_EPISODE: function DOMAIN_EPISODE(id) {
-        return 'http://www3.fmovies.cloud/ajax/movie_episodes/' + id;
+        return 'http://www4.fmovies.cloud/ajax/movie_episodes/' + id;
     },
     DOMAIN_TOKEN: function DOMAIN_TOKEN(eid, mid) {
-        return 'http://www3.fmovies.cloud/ajax/movie_token?eid=' + eid + '&mid=' + mid;
+        return 'http://www4.fmovies.cloud/ajax/movie_token?eid=' + eid + '&mid=' + mid;
     },
     DOMAIN_SOURCE: function DOMAIN_SOURCE(eid, x, y) {
-        return 'http://www3.fmovies.cloud/ajax/movie_sources/' + eid + '?x=' + x + '&y=' + y;
+        return 'http://www4.fmovies.cloud/ajax/movie_sources/' + eid + '?x=' + x + '&y=' + y;
     },
     DOMAIN_EMBED: function DOMAIN_EMBED(id) {
-        return 'http://www3.fmovies.cloud/ajax/movie_embed/' + id;
+        return 'http://www4.fmovies.cloud/ajax/movie_embed/' + id;
     }
 };
 
@@ -301,7 +301,7 @@ var FmoviesVc = function () {
                                 _context6.prev = 18;
                                 _context6.t0 = _context6['catch'](14);
 
-                                console.log('fmoviesvc, invalid JSON', _context6.t0);
+                                console.log('fmoviesvc, invalid JSON');
                                 throw new Error('INVALID_JSON');
 
                             case 22:
@@ -534,7 +534,7 @@ var FmoviesVc = function () {
                                         }
                                     });
                                 } catch (e) {
-                                    console.log('fmoviesvc, getEmbed, no json parse', e);
+                                    console.log('fmoviesvc, getEmbed, no json parse');
                                 }
 
                             case 6:

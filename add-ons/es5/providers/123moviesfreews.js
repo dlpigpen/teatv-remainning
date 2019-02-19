@@ -61,6 +61,9 @@ var S123moviesfreews = function () {
 
                             case 10:
                                 dataSearch = _context.sent;
+
+                                //console.log(dataSearch);
+
                                 $ = cheerio.load(dataSearch);
                                 linkDetailVal = $('.ml-item').eq(0).find('a:nth-child(1)').attr('href');
                                 titleVal = $('.ml-item').eq(0).find('h2:nth-child(1)').text();
@@ -197,7 +200,7 @@ var S123moviesfreews = function () {
                                                                 hosts.push({
                                                                     provider: {
                                                                         url: detailUrl,
-                                                                        name: "seriesfree"
+                                                                        name: "123freews"
                                                                     },
                                                                     result: {
                                                                         file: link,

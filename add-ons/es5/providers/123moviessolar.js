@@ -7,23 +7,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var URL = {
-    DOMAIN: "https://www1.123movies.solar",
+    DOMAIN: "https://www1.123movies.vision",
     SEARCH: function SEARCH() {
-        return 'https://www1.123movies.solar/index.php?do=search';
+        return 'https://www1.123movies.vision/index.php?do=search';
     },
     DOMAIN_DECODE: '',
-    HEADERS: function HEADERS(referer) {
+    HEADERS: function HEADERS() {
         return {
-            'authority': 'www1.123movies.solar',
-            'cache-control': 'max-age=0',
-            'origin': 'https://www.123movies.solar',
-            'upgrade-insecure-requests': '1',
-            'content-type': 'application/x-www-form-urlencoded',
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            'referer': referer,
-            // 'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'vi,en-US;q=0.9,en;q=0.8'
+            'accept-encoding': 'gzip, deflate'
         };
     }
 };
@@ -55,28 +47,37 @@ var S123moviessolar = function () {
                                 videoUrl = false;
                                 tvshowVideoUrl = false;
                                 _context.prev = 6;
-                                dataString = 'story=' + title + '&do=search&subaction=search&titleonly=3';
+                                dataString = {
+                                    'story': title.toLowerCase(),
+                                    'do': 'search',
+                                    'subaction': 'search',
+                                    'full_search': 0,
+                                    'result_from': 1,
+                                    'search_start': 0
+                                };
                                 _context.next = 10;
-                                return httpRequest.post(URL.SEARCH(), URL.HEADERS(URL.SEARCH()), dataString);
+                                return httpRequest.post(URL.SEARCH(), URL.HEADERS(), dataString);
 
                             case 10:
                                 dataSearch = _context.sent;
                                 $ = cheerio.load(dataSearch.data);
                                 yearVal = void 0;
+
+                                console.log(dataString);
+
                                 divHoldData = $('.ml-item');
                                 titleVal = void 0;
 
 
                                 divHoldData.each(function () {
-                                    yearVal = $(this).find('.jt-imdb').text();
                                     titleVal = $(this).find('h2').text();
+                                    console.log(titleVal);
 
-                                    if (titleVal.toLowerCase().indexOf(title.toLowerCase()) !== -1 && yearVal.toString().indexOf(year) !== -1) {
+                                    if (titleVal.toLowerCase() == title.toLowerCase()) {
                                         detailUrl = $(this).find('a').attr('href');
                                     }
                                 });
 
-                                console.log(detailUrl);
                                 this.state.detailUrl = detailUrl;
                                 _context.next = 23;
                                 break;
