@@ -3,7 +3,7 @@
         "5movies": {
             "name": "5movies",
             "domain": "5movies.to",
-            "version": "0.4.2",
+            "version": "0.4.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/5movies.js",
             "type": [
                 "movie",
@@ -13,7 +13,7 @@
         "fmoviesvc": {
             "name": "fmoviesvc",
             "domain": "fmovies.vc",
-            "version": "0.4.3",
+            "version": "0.4.13",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/fmoviesvc.js",
             "type": [
                 "movie",
@@ -23,8 +23,18 @@
         "m4ufree": {
             "name": "m4ufree",
             "domain": "m4ufree.fun",
-            "version": "0.4.9",
+            "version": "0.5.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/m4ufree.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "m4u": {
+            "name": "m4u",
+            "domain": "m4u.fun",
+            "version": "0.1.7",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/m4u.js",
             "type": [
                 "movie",
                 "tv"
@@ -33,7 +43,7 @@
         "playdk": {
             "name": "playdk",
             "domain": "playdk.net",
-            "version": "0.4.0",
+            "version": "0.4.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/playdk.js",
             "type": [
                 "movie",
@@ -43,7 +53,7 @@
         "putlockerhd": {
             "name": "putlockerhd",
             "domain": "putlockerhd.co",
-            "version": "0.4.0",
+            "version": "0.4.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/putlockerhd.js",
             "type": [
                 "movie",
@@ -53,7 +63,7 @@
         "series9": {
             "name": "series9",
             "domain": "series9.io",
-            "version": "0.4.1",
+            "version": "0.4.14",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/series9.js",
             "type": [
                 "tv",
@@ -63,7 +73,7 @@
         "seehd": {
             "name": "seehd",
             "domain": "seehd.pl",
-            "version": "0.4.1",
+            "version": "0.4.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/seehd.js",
             "type": [
                 "movie",
@@ -73,7 +83,7 @@
         "watchepisodes4": {
             "name": "watchepisodes4",
             "domain": "watchepisodes4.com",
-            "version": "0.4.3",
+            "version": "0.4.14",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/watchepisodes4.js",
             "type": [
                 "tv"
@@ -82,7 +92,7 @@
         "watchseries": {
             "name": "watchseries",
             "domain": "watchseries.sk",
-            "version": "0.4.1",
+            "version": "0.4.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/watchseries.js",
             "type": [
                 "tv"
@@ -91,7 +101,7 @@
         "fmoviespe": {
             "name": "fmoviespe",
             "domain": "fmovies.pe",
-            "version": "0.4.0",
+            "version": "0.4.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/fmoviespe.js",
             "type": [
                 "movie",
@@ -100,8 +110,8 @@
         },
         "123moviessolar": {
             "name": "123moviessolar",
-            "domain": "123moviessolar.dit",
-            "version": "0.1.8",
+            "domain": "123moviessolar.dis",
+            "version": "0.1.17",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/123moviessolar.js",
             "type": [
                 "tv"
@@ -109,19 +119,19 @@
         },
         "thanqn": {
             "name": "thanqn",
-            "domain": "thanqn.dit",
-            "version": "0.2.8",
+            "domain": "thanqn.dis",
+            "version": "0.3.13",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/thanqn.js",
             "type": [
                 "movie",
                 "tv"
             ]
         },
-        "umbo": {
-            "name": "umbo",
-            "domain": "umbo.dit",
-            "version": "0.0.1",
-            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/umbo.js",
+        "hdtop": {
+            "name": "hdtop",
+            "domain": "hdtop.dis",
+            "version": "0.0.6",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/hdtop.js",
             "type": [
                 "movie",
                 "tv"
@@ -129,8 +139,8 @@
         },
         "seriesfree": {
             "name": "seriesfree",
-            "domain": "seriesfree.dit",
-            "version": "0.1.4",
+            "domain": "seriesfree.dis",
+            "version": "0.1.16",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/seriesfree.js",
             "type": [
                 "tv"
@@ -138,8 +148,8 @@
         },
         "movieflixter": {
             "name": "movieflixter",
-            "domain": "movieflixter.dit",
-            "version": "0.1.7",
+            "domain": "movieflixter.dis",
+            "version": "0.1.17",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/movieflixter.js",
             "type": [
                 "tv",
@@ -148,8 +158,8 @@
         },
         "gostream": {
             "name": "gostream",
-            "domain": "gostream.dit",
-            "version": "0.5.9",
+            "domain": "gostream.dis",
+            "version": "0.6.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/gostream.js",
             "type": [
                 "tv",
@@ -158,8 +168,8 @@
         },
         "wfree": {
             "name": "wfree",
-            "domain": "wfree.dit",
-            "version": "0.0.2",
+            "domain": "wfree.dis",
+            "version": "0.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/wfreeac.js",
             "type": [
                 "movie",
@@ -168,8 +178,8 @@
         },
         "ddlvalley": {
             "name": "ddlvalley",
-            "domain": "ddlvalley.dit",
-            "version": "0.0.2",
+            "domain": "ddlvalley.dis",
+            "version": "0.0.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/ddlvalley.js",
             "type": [
                 "movie",
@@ -178,29 +188,9 @@
         },
         "wrzcraft": {
             "name": "wrzcraft",
-            "domain": "wrzcraft.dit",
-            "version": "0.0.1",
+            "domain": "wrzcraft.dis",
+            "version": "0.0.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/wrzcraft.js",
-            "type": [
-                "movie",
-                "tv"
-            ]
-        },
-        "rlsbb": {
-            "name": "rlsbb",
-            "domain": "rlsbb.dit",
-            "version": "0.0.5",
-            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/rlsbb.js",
-            "type": [
-                "movie",
-                "tv"
-            ]
-        },
-        "spacemov": {
-            "name": "spacemov",
-            "domain": "spacemov.dit",
-            "version": "0.1.3",
-            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/spacemov.js",
             "type": [
                 "movie",
                 "tv"
@@ -208,8 +198,8 @@
         },
         "scnsrc": {
             "name": "scnsrc",
-            "domain": "scnsrc.dit",
-            "version": "0.0.1",
+            "domain": "scnsrc.dis",
+            "version": "0.1.2",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/scnsrc.js",
             "type": [
                 "movie",
@@ -218,45 +208,27 @@
         },
         "thanrd": {
             "name": "thanrd",
-            "domain": "thanrd.dit",
-            "version": "0.0.1",
+            "domain": "thanrd.dis",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/thanrd.js",
             "type": [
                 "movie",
                 "tv"
             ]
         },
-        "popcorns": {
-            "name": "popcorns",
-            "domain": "popcorns.dit",
-            "version": "0.0.2",
-            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/hdpopcornsco.js",
-            "type": [
-                "movie"
-            ]
-        },
         "flixanity": {
             "name": "flixanity",
             "domain": "flixanity.io",
-            "version": "1.7.2",
+            "version": "1.7.13",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/flixanity.js",
-            "type": [
-                "movie"
-            ]
-        },
-        "watchhdmovie": {
-            "name": "watchhdmovie",
-            "domain": "watchhdmovie.dit",
-            "version": "0.0.1",
-            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/watchhdmovie.js",
             "type": [
                 "movie"
             ]
         },
         "filmxyz": {
             "name": "filmxyz",
-            "domain": "filmxyz.dit",
-            "version": "0.0.4",
+            "domain": "filmxyz.dis",
+            "version": "0.0.14",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/filmxy.js",
             "type": [
                 "movie"
@@ -264,8 +236,8 @@
         },
         "ffilms": {
             "name": "ffilms",
-            "domain": "ffilms.dit",
-            "version": "0.0.4",
+            "domain": "ffilms.dis",
+            "version": "0.0.14",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/ffilms.js",
             "type": [
                 "movie",
@@ -274,8 +246,8 @@
         },
         "afdah": {
             "name": "afdah",
-            "domain": "afdah.dit",
-            "version": "0.7.5",
+            "domain": "afdah.dis",
+            "version": "0.7.15",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/afdah.js",
             "type": [
                 "movie",
@@ -284,8 +256,8 @@
         },
         "ajaxmovie": {
             "name": "ajaxmovie",
-            "domain": "ajaxmovie.dit",
-            "version": "0.0.1",
+            "domain": "ajaxmovie.dis",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/azmovie.js",
             "type": [
                 "movie"
@@ -293,8 +265,8 @@
         },
         "onemovies": {
             "name": "onemovies",
-            "domain": "onemovies.dit",
-            "version": "0.0.3",
+            "domain": "onemovies.dis",
+            "version": "0.0.15",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/1movies.js",
             "type": [
                 "movie",
@@ -303,27 +275,18 @@
         },
         "123moviesfreews": {
             "name": "123freews",
-            "domain": "123freews.dit",
-            "version": "1.1.1",
+            "domain": "123freews.dis",
+            "version": "1.1.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/123moviesfreews.js",
             "type": [
                 "tv",
                 "movie"
             ]
         },
-        "screamcr": {
-            "name": "screamcr",
-            "domain": "screamcr.dit",
-            "version": "1.1.4",
-            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/screamcr.js",
-            "type": [
-                "movie"
-            ]
-        },
         "yitivi": {
             "name": "yitivi",
-            "domain": "yitivi.dit",
-            "version": "0.0.1",
+            "domain": "yitivi.dis",
+            "version": "0.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/yifytv.js",
             "type": [
                 "movie"
@@ -331,8 +294,8 @@
         },
         "davich": {
             "name": "davich",
-            "domain": "davich.dit",
-            "version": "0.0.1",
+            "domain": "davich.dis",
+            "version": "0.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/davix.js",
             "type": [
                 "movie"
@@ -340,8 +303,8 @@
         },
         "animevlf": {
             "name": "animevlf",
-            "domain": "animevlf.dit",
-            "version": "0.0.1",
+            "domain": "animevlf.dis",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/animeflv.js",
             "type": [
                 "tv"
@@ -349,8 +312,8 @@
         },
         "gogoanimes": {
             "name": "gogoanimes",
-            "domain": "gogoanimes.dit",
-            "version": "0.0.1",
+            "domain": "gogoanimes.dis",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/gogoanimes.js",
             "type": [
                 "tv"
@@ -358,8 +321,8 @@
         },
         "hdm": {
             "name": "hdm",
-            "domain": "hdm.dit",
-            "version": "0.0.1",
+            "domain": "hdm.dis",
+            "version": "0.0.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/hdm.js",
             "type": [
                 "tv",
@@ -368,12 +331,256 @@
         },
         "tdn": {
             "name": "tdn",
-            "domain": "tdn.dit",
-            "version": "0.3.4",
+            "domain": "tdn.dis",
+            "version": "0.4.7",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/tdn.js",
             "type": [
                 "tv",
                 "movie"
+            ]
+        },
+        "123moviesfree": {
+            "name": "123moviesfree",
+            "domain": "123moviesfree.dis",
+            "version": "0.1.15",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/123moviesfree.js",
+            "type": [
+                "tv",
+                "movie"
+            ]
+        },
+        "projectfreetv": {
+            "name": "projectfreetv",
+            "domain": "projectfreetv.dis",
+            "version": "0.1.14",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/projectfreetv.js",
+            "type": [
+                "tv"
+            ]
+        },
+        "watchonl": {
+            "name": "watchonl",
+            "domain": "watchonl.dis",
+            "version": "0.0.12",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/watchonl.js",
+            "type": [
+                "tv"
+            ]
+        },
+        "hdbest": {
+            "name": "hdbest",
+            "domain": "hdbest.dis",
+            "version": "0.0.11",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/hdbest.js",
+            "type": [
+                "movie"
+            ]
+        },
+        "twodllnet": {
+            "name": "twodllnet",
+            "domain": "twodllnet.dis",
+            "version": "0.0.12",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/rd.twodllnet.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "movie4k": {
+            "name": "movie4k",
+            "domain": "movie4k.dis",
+            "version": "0.0.11",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/movie4k.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "123moviesag": {
+            "name": "123moviesag",
+            "domain": "123moviesag.dis",
+            "version": "0.1.2",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/123moviesag.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "miradetodo": {
+            "name": "miradetodo",
+            "domain": "miradetodo.dis",
+            "version": "0.0.10",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/miradetodo.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "salamdl": {
+            "name": "salamdl",
+            "domain": "salamdl.dis",
+            "version": "0.0.10",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/salamdl.js",
+            "type": [
+                "movie"
+            ]
+        },
+        "cinewhale": {
+            "name": "cinewhale",
+            "domain": "cinewhale.dis",
+            "version": "0.0.12",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/cinewhale.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "anonembed": {
+            "name": "anonembed",
+            "domain": "anonembed.dis",
+            "version": "0.0.11",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/anonembed.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "f2movies": {
+            "name": "f2movies",
+            "domain": "f2movies.dis",
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/f2movies.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "icefilms": {
+            "name": "icefilms",
+            "domain": "icefilms.dis",
+            "version": "0.0.13",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/icefilms.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "c1nema": {
+            "name": "c1nema",
+            "domain": "c1nema.dis",
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/c1nema.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "tv21": {
+            "name": "tv21",
+            "domain": "tv21.dis",
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/tv21.js",
+            "type": [
+                "movie"
+            ]
+        },
+        "hdmo": {
+            "name": "hdmo",
+            "domain": "hdmo.dis",
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/hdmo.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "fmoviescab": {
+            "name": "fmoviescab",
+            "domain": "fmoviescab.dis",
+            "version": "0.0.5",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/fmoviescab.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "projectflv": {
+            "name": "projectflv",
+            "domain": "projectflv.dis",
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/projectflv.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "spacemov": {
+            "name": "spacemov",
+            "domain": "spacemov.dis",
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/spacemov.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "123netflix": {
+            "name": "123netflix",
+            "domain": "123netflix.dis",
+            "version": "0.0.4",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/123netflix.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "streamdreams": {
+            "name": "streamdreams",
+            "domain": "streamdreams.dis",
+            "version": "0.0.5",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/streamdreams.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "putmovie": {
+            "name": "putmovie",
+            "domain": "putmovie.dis",
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/putmovie.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "newepisodes": {
+            "name": "newepisodes",
+            "domain": "newepisodes.dis",
+            "version": "0.0.4",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/newepisodes.js",
+            "type": [
+                "tv"
+            ]
+        },
+        "vizer": {
+            "name": "vizer",
+            "domain": "vizer.dis",
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/vizer.js",
+            "type": [
+                "movie",
+                "tv"
+            ]
+        },
+        "amadei33": {
+            "name": "amadei33",
+            "domain": "amadei33.dis",
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/providers/amadei33.js",
+            "type": [
+                "movie",
+                "tv"
             ]
         }
     },
@@ -381,13 +588,13 @@
         "rapidvideo": {
             "name": "rapidvideo",
             "domain": "rapidvideo.com",
-            "version": "0.1.9",
+            "version": "0.1.19",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/rapidvideo.js"
         },
         "tocloud": {
             "name": "tocloud",
             "domain": "tocloud.co",
-            "version": "0.0.9",
+            "version": "0.0.17",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/tocloud.js"
         },
         "uploadhaven": {
@@ -395,7 +602,7 @@
             "domain": [
                 "uploadhaven.com"
             ],
-            "version": "0.0.1",
+            "version": "0.0.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/uploadhaven.js"
         },
         "consistent": {
@@ -403,13 +610,13 @@
             "domain": [
                 "consistent.stream"
             ],
-            "version": "0.0.1",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/consistent.js"
         },
         "streamango": {
             "name": "streamango",
             "domain": "streamango.com",
-            "version": "0.1.0",
+            "version": "0.1.8",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/streamango.js"
         },
         "openload": {
@@ -423,7 +630,7 @@
                 "oload.site",
                 "oload.win"
             ],
-            "version": "0.2.5",
+            "version": "0.2.14",
             "author": "psyntium",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/openload.js"
         },
@@ -432,7 +639,7 @@
             "domain": [
                 "putload.tv"
             ],
-            "version": "0.0.3",
+            "version": "0.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/putload.js"
         },
         "teamdk": {
@@ -440,7 +647,7 @@
             "domain": [
                 "teamdk.net"
             ],
-            "version": "0.0.3",
+            "version": "0.0.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/teamdk.js"
         },
         "estream": {
@@ -448,7 +655,7 @@
             "domain": [
                 "estreamdisable.to"
             ],
-            "version": "0.0.4",
+            "version": "0.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/estream.js"
         },
         "thevideo": {
@@ -458,7 +665,7 @@
                 "tvad.me",
                 "thevideo.website"
             ],
-            "version": "0.0.5",
+            "version": "0.0.13",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/thevideo.js"
         },
         "vidstreaming": {
@@ -466,7 +673,7 @@
             "domain": [
                 "vidstreaming.io"
             ],
-            "version": "0.0.2",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidstreaming.js"
         },
         "vidushare": {
@@ -474,7 +681,7 @@
             "domain": [
                 "vidushare.com"
             ],
-            "version": "0.0.2",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidushare.js"
         },
         "okru": {
@@ -482,7 +689,7 @@
             "domain": [
                 "ok.ru"
             ],
-            "version": "0.2.9",
+            "version": "0.2.17",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/ok-ru.js"
         },
         "vidnode": {
@@ -490,7 +697,7 @@
             "domain": [
                 "vidnode.net"
             ],
-            "version": "0.0.3",
+            "version": "0.0.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidnode.js"
         },
         "vidcdn": {
@@ -498,7 +705,7 @@
             "domain": [
                 "vidcdn.pro"
             ],
-            "version": "0.0.5",
+            "version": "0.0.13",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidcdn.js"
         },
         "m4ukido": {
@@ -506,7 +713,7 @@
             "domain": [
                 "m4ukido.com"
             ],
-            "version": "0.0.2",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/m4ukido.js"
         },
         "googleusercontent": {
@@ -515,7 +722,7 @@
                 "googleusercontent.com",
                 "googleapis.com"
             ],
-            "version": "0.0.4",
+            "version": "0.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/googleusercontent.js"
         },
         "212.47.226.206": {
@@ -523,7 +730,7 @@
             "domain": [
                 "212.47.226.206"
             ],
-            "version": "0.0.1",
+            "version": "0.0.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/212.47.226.206.js"
         },
         "212.47.234.139": {
@@ -531,7 +738,7 @@
             "domain": [
                 "212.47.234.139"
             ],
-            "version": "0.0.1",
+            "version": "0.0.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/212.47.234.139.js"
         },
         "fbcdn": {
@@ -542,15 +749,16 @@
                 "fbcdn.net",
                 "instagram.com"
             ],
-            "version": "0.6.9",
+            "version": "0.6.17",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/video.xx.fbcdn.js"
         },
         "googlevideo": {
             "name": "googlevideo",
             "domain": [
-                "googlevideo.com"
+                "googlevideo.com",
+                "blogspot.com"
             ],
-            "version": "0.0.9",
+            "version": "0.1.8",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/googlevideo.js"
         },
         "vidlox": {
@@ -558,7 +766,7 @@
             "domain": [
                 "vidlox.me"
             ],
-            "version": "0.0.4",
+            "version": "0.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidlox.js"
         },
         "vidoza": {
@@ -566,7 +774,7 @@
             "domain": [
                 "vidoza.net"
             ],
-            "version": "1.0.4",
+            "version": "1.0.12",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidoza.js"
         },
         "realdebit": {
@@ -576,7 +784,7 @@
                 "rapidgator.net",
                 "nitroflare.com"
             ],
-            "version": "0.0.1",
+            "version": "0.0.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/realdebit.js"
         },
         "hdpopcornscosv": {
@@ -584,7 +792,7 @@
             "domain": [
                 "85.93.91.137"
             ],
-            "version": "0.0.1",
+            "version": "0.0.9",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/hdpopcornscosv.js"
         },
         "GoogleDrive": {
@@ -592,7 +800,7 @@
             "domain": [
                 "drive.google.com"
             ],
-            "version": "0.7.3",
+            "version": "0.7.11",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/drive.google.js"
         },
         "direct": {
@@ -627,17 +835,23 @@
                 "melimedia.net",
                 "farshow.ir",
                 "watchmega.to",
-                "amazonaws.com"
+                "amazonaws.com",
+                "lavinmovie.net",
+                "lalbatte.net",
+                "f2m.io",
+                "serverdl.pw",
+                "mihanpix.net"
             ],
-            "version": "0.0.7",
+            "version": "0.1.8",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/direct.js"
         },
         "uptostream": {
             "name": "uptostream",
             "domain": [
-                "uptostream.com"
+                "uptostream.com",
+                "uptobox.com"
             ],
-            "version": "0.0.1",
+            "version": "0.0.10",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/uptostream.js"
         },
         "afdah": {
@@ -645,8 +859,147 @@
             "domain": [
                 "afdah.info"
             ],
-            "version": "0.9.7",
+            "version": "0.9.18",
             "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/afdah.js"
+        },
+        "vidtodo": {
+            "name": "vidtodo",
+            "domain": [
+                "vidtodo.com",
+                "vidtodoo.com"
+            ],
+            "version": "0.0.10",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidtodo.js"
+        },
+        "fastplay": {
+            "name": "fastplay",
+            "domain": [
+                "fastplay.to"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/fastplay.js"
+        },
+        "vcdn": {
+            "name": "vcdn",
+            "domain": [
+                "vcdn.io"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vcdn.js"
+        },
+        "vidcloud": {
+            "name": "vidcloud",
+            "domain": [
+                "vidcloud.icu"
+            ],
+            "version": "0.0.10",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidcloud.js"
+        },
+        "vevio": {
+            "name": "vevio",
+            "domain": [
+                "vev.io"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vevio.js"
+        },
+        "gounlimited": {
+            "name": "gounlimited",
+            "domain": [
+                "gounlimited.to"
+            ],
+            "version": "0.0.13",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/gounlimited.js"
+        },
+        "viduplayer": {
+            "name": "viduplayer",
+            "domain": [
+                "viduplayer.com",
+                "openstream.io"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/viduplayer.js"
+        },
+        "vidup": {
+            "name": "vidup",
+            "domain": [
+                "vidup.io"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidup.js"
+        },
+        "megaxfer": {
+            "name": "megaxfer",
+            "domain": [
+                "megaxfer.ru",
+                "unlimitedpeer.ru"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/megaxfer.js"
+        },
+        "fembed": {
+            "name": "fembed",
+            "domain": [
+                "fembed.com"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/fembed.js"
+        },
+        "vcstream": {
+            "name": "vcstream",
+            "domain": [
+                "vcstream.to"
+            ],
+            "version": "0.0.9",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vcstream.js"
+        },
+        "clipwatch": {
+            "name": "clipwatch",
+            "domain": [
+                "clipwatching.com"
+            ],
+            "version": "0.0.6",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/clipwatching.js"
+        },
+        "verystream": {
+            "name": "verystream",
+            "domain": [
+                "verystream.com"
+            ],
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/verystream.js"
+        },
+        "xstreamcdn": {
+            "name": "xstreamcdn",
+            "domain": [
+                "xstreamcdn.com"
+            ],
+            "version": "0.0.4",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/xstreamcdn.js"
+        },
+        "hls": {
+            "name": "hls",
+            "domain": [
+                "loadshare.org"
+            ],
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/hls.js"
+        },
+        "vidcloudco": {
+            "name": "vidcloudco",
+            "domain": [
+                "vidcloud.co"
+            ],
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vidcloudco.js"
+        },
+        "vshare": {
+            "name": "vshare",
+            "domain": [
+                "vshare.eu"
+            ],
+            "version": "0.0.3",
+            "url": "https://raw.githubusercontent.com/TeaTV/TeaTV-add-ons/master/add-ons/es5/hosts/vshare.js"
         }
     }
 }

@@ -6,6 +6,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//const jsdom = require('jsdom');
+//const { JSDOM } = jsdom;
+//const jqueryPath = './jquery.min.js';
+//const fs = require('fs');
+
 var Openload = function () {
     function Openload(props) {
         _classCallCheck(this, Openload);
@@ -14,49 +19,6 @@ var Openload = function () {
         this.settings = props.settings;
         this.state = {};
     }
-
-    // async getOpenload(url) {
-
-    //     const { httpRequest, jsdom }    = this.libs;
-    //     const { JSDOM }                 = jsdom;
-    //     const jqueryUrl                 = "http://code.jquery.com/jquery-1.11.0.min.js";
-    //     let html                        = await httpRequest.getHTML(url);
-
-    //     if (html.indexOf('<h3>We’re Sorry!</h3>') > -1) throw new Error("Invalid fileId");
-
-
-    //     let jquery  = await httpRequest.getHTML(jqueryUrl);
-    //     const dom   = new JSDOM(html, {
-    //         runScripts: "outside-only"
-    //     });
-
-    //     const window = dom.window;
-    //     window.eval(jquery);
-
-    //     var script = html.substring(html.indexOf("ﾟωﾟﾉ= /｀ｍ´"));
-    //     script = script.substring(0, script.indexOf("</script>"));
-    //     window.eval(script);
-    //     script = script.substring(script.indexOf("$(document)"));
-    //     script = script.substring(script.indexOf("var"))
-    //     script = script.substring(0, script.indexOf("ﾟωﾟ"))
-    //     script = script.substring(0, script.lastIndexOf("});"))
-    //     script = script.replace("document.createTextNode.toString().indexOf('[native code')", "1");
-    //     script = script.replace("_0x3d7b02=[];", "");
-    //     window.eval(script);
-
-    //     let streamUrl   = window.document.getElementById("streamurj").innerHTML;
-    //     let opl         = "https://openload.co/stream/" + streamUrl + "?mime=true";
-    //     let isDie       = await httpRequest.isLinkDie(opl);
-
-    //     if( isDie == false ) throw new Error("NOT LINK");
-    //     return {
-    //         host: {
-    //             url: url,
-    //             name: "openload"
-    //         },
-    //         result: [{ file: opl, label: "NOR", type: "embed", size: isDie }]
-    //     }
-    // }
 
     _createClass(Openload, [{
         key: 'getQuality',
@@ -129,100 +91,102 @@ var Openload = function () {
         key: 'getUsingAPI',
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(url) {
-                var _libs, httpRequest, cryptoJs, cheerio, html, token, apiResponse, _apiResponse$data, status, data, error, isDie, $, title, quality, s;
+                var _libs, httpRequest, cryptoJs, cheerio, html, token, apiResponse, time, time1, t, _apiResponse$data, status, data, error, isDie, $, title, quality, s;
 
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
+                                url = url.replace(/(oload.[a-z]+)/g, 'openload.co');
+
                                 _libs = this.libs, httpRequest = _libs.httpRequest, cryptoJs = _libs.cryptoJs, cheerio = _libs.cheerio;
                                 html = false;
-                                _context2.prev = 2;
-                                _context2.next = 5;
+                                _context2.prev = 3;
+                                _context2.next = 6;
                                 return this.checkLive(url);
 
-                            case 5:
+                            case 6:
                                 html = _context2.sent;
-                                _context2.next = 11;
+                                _context2.next = 12;
                                 break;
 
-                            case 8:
-                                _context2.prev = 8;
-                                _context2.t0 = _context2['catch'](2);
+                            case 9:
+                                _context2.prev = 9;
+                                _context2.t0 = _context2['catch'](3);
                                 throw new Error("LINK DIE");
 
-                            case 11:
+                            case 12:
                                 token = cryptoJs.MD5(html + "teatv-openload").toString();
                                 apiResponse = void 0;
-                                _context2.prev = 13;
-                                _context2.next = 16;
+                                _context2.prev = 14;
+                                time = Date.now();
+                                _context2.next = 18;
                                 return httpRequest.post("https://api.teatv.net/api/v2/get_opl", {
+                                    //apiResponse   = await httpRequest.post("http://localhost:3000/api/v2/get_opl", {
                                     "Content-Type": "application/json"
                                 }, JSON.stringify({
                                     data: html,
                                     token: token
                                 }));
 
-                            case 16:
+                            case 18:
                                 apiResponse = _context2.sent;
-                                _context2.next = 23;
+                                time1 = Date.now();
+                                t = time1 - time;
+                                //console.log(t, 'time');
+
+                                _context2.next = 27;
                                 break;
 
-                            case 19:
-                                _context2.prev = 19;
-                                _context2.t1 = _context2['catch'](13);
+                            case 23:
+                                _context2.prev = 23;
+                                _context2.t1 = _context2['catch'](14);
 
                                 console.log('teatv.net, error json getopl', _context2.t1);
                                 throw new Error('ERROR REQUEST');
 
-                            case 23:
-
-                                // let isDie = await httpRequest.isLinkDie(apiResponse.data.data);
-                                // if( isDie == false ) throw new Error("LINK DIE");
-
+                            case 27:
                                 _apiResponse$data = apiResponse.data, status = _apiResponse$data.status, data = _apiResponse$data.data, error = _apiResponse$data.error;
 
-                                console.log(data, status);
-
                                 if (!error) {
-                                    _context2.next = 27;
+                                    _context2.next = 30;
                                     break;
                                 }
 
                                 throw new Error(error);
 
-                            case 27:
+                            case 30:
                                 if (!(status == 200)) {
-                                    _context2.next = 48;
+                                    _context2.next = 51;
                                     break;
                                 }
 
                                 isDie = false;
-                                _context2.prev = 29;
-                                _context2.next = 32;
+                                _context2.prev = 32;
+                                _context2.next = 35;
                                 return httpRequest.isLinkDie(data);
 
-                            case 32:
+                            case 35:
                                 isDie = _context2.sent;
-                                _context2.next = 38;
+                                _context2.next = 41;
                                 break;
 
-                            case 35:
-                                _context2.prev = 35;
-                                _context2.t2 = _context2['catch'](29);
+                            case 38:
+                                _context2.prev = 38;
+                                _context2.t2 = _context2['catch'](32);
 
 
                                 console.log(String(_context2.t2));
 
-                            case 38:
+                            case 41:
                                 if (!(isDie == false)) {
-                                    _context2.next = 40;
+                                    _context2.next = 43;
                                     break;
                                 }
 
                                 throw new Error("NOT LINK");
 
-                            case 40:
+                            case 43:
                                 $ = cheerio.load(html);
                                 title = $(".title").text();
                                 quality = this.getQuality(title);
@@ -237,7 +201,7 @@ var Openload = function () {
                                     result: [s]
                                 });
 
-                            case 48:
+                            case 51:
                                 return _context2.abrupt('return', {
                                     host: {
                                         url: url,
@@ -246,12 +210,12 @@ var Openload = function () {
                                     result: []
                                 });
 
-                            case 49:
+                            case 52:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[2, 8], [13, 19], [29, 35]]);
+                }, _callee2, this, [[3, 9], [14, 23], [32, 38]]);
             }));
 
             function getUsingAPI(_x2) {

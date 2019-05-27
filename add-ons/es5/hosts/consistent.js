@@ -26,7 +26,7 @@ var Consistent = function () {
         key: 'getLink',
         value: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(url) {
-                var _libs, httpRequest, cheerio, results, isDie;
+                var _libs, httpRequest, cheerio, results;
 
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
@@ -34,28 +34,11 @@ var Consistent = function () {
                             case 0:
                                 _libs = this.libs, httpRequest = _libs.httpRequest, cheerio = _libs.cheerio;
                                 results = [];
-                                isDie = 'NOR';
-                                _context.prev = 3;
-                                _context.next = 6;
-                                return httpRequest.isLinkDie(url);
 
-                            case 6:
-                                isDie = _context.sent;
-                                _context.next = 11;
-                                break;
 
-                            case 9:
-                                _context.prev = 9;
-                                _context.t0 = _context['catch'](3);
-
-                            case 11:
-
-                                if (isDie != false && isDie != 'NOR') {
-
-                                    results.push({
-                                        file: url, label: 'NOR', type: "direct", size: isDie
-                                    });
-                                }
+                                results.push({
+                                    file: url, label: 'NOR', type: "direct", size: 'NOR'
+                                });
 
                                 return _context.abrupt('return', {
                                     host: {
@@ -65,12 +48,12 @@ var Consistent = function () {
                                     result: results
                                 });
 
-                            case 13:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[3, 9]]);
+                }, _callee, this);
             }));
 
             function getLink(_x) {

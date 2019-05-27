@@ -105,7 +105,7 @@ var Afdah = function () {
         key: "checkLive",
         value: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(url) {
-                var httpRequest, html;
+                var httpRequest, headers, u, html;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
@@ -115,18 +115,31 @@ var Afdah = function () {
                                 // you fill the die status text
                                 // const dieStatusText = "";
 
-                                _context.next = 3;
-                                return httpRequest.post(url, {
+                                headers = {
                                     'User-Agent': ' Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36',
                                     'Referer': url
 
-                                }, { 'play': 'continue', 'x': 0, 'y': 0 });
+                                };
 
-                            case 3:
+                                try {
+                                    u = JSON.parse(url);
+
+                                    url = u.url;
+                                    headers = {
+                                        'cookie': u.cookie,
+                                        'User-Agent': u['User-Agent'],
+                                        'Referer': url
+                                    };
+                                } catch (e) {}
+
+                                _context.next = 5;
+                                return httpRequest.post(url, headers, { 'play': 'continue', 'x': 0, 'y': 0 });
+
+                            case 5:
                                 html = _context.sent;
                                 return _context.abrupt("return", html.data);
 
-                            case 5:
+                            case 7:
                             case "end":
                                 return _context.stop();
                         }
@@ -151,27 +164,93 @@ var Afdah = function () {
         key: "getLink",
         value: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(url) {
-                var _libs, httpRequest, cheerio, html, decryp, sources, arrPromise;
+                var _libs, httpRequest, cheerio, cryptoJs, allowCache, u, sources, bodyPost, embeds, r, i, res, html, decryp, arrPromise, xxx;
 
                 return regeneratorRuntime.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
-                                _libs = this.libs, httpRequest = _libs.httpRequest, cheerio = _libs.cheerio;
-                                _context3.next = 3;
+                                _libs = this.libs, httpRequest = _libs.httpRequest, cheerio = _libs.cheerio, cryptoJs = _libs.cryptoJs;
+                                allowCache = false;
+                                u = '';
+                                sources = [];
+                                bodyPost = {};
+                                embeds = ['/embed/', '/embed3/'];
+                                r = url.match(/\/embed\d?\/(\d+)/);
+
+
+                                for (i = 0; i < embeds.length; i++) {
+                                    if (url.indexOf(embeds[i]) != -1) {
+                                        allowCache = true;
+                                        u = r[0];
+                                    }
+                                }
+
+                                console.log(u);
+
+                                if (!(allowCache && true)) {
+                                    _context3.next = 23;
+                                    break;
+                                }
+
+                                bodyPost = {
+                                    name_source: 'afdahhosthihhi',
+                                    is_link: 0,
+                                    type: 'movie',
+                                    season: 0,
+                                    episode: 0,
+                                    title: u,
+                                    year: 2018,
+                                    hash: cryptoJs.MD5(u.toLowerCase() + "0aloha0").toString()
+                                };
+
+                                _context3.next = 13;
+                                return httpRequest.post('https://vvv.teatv.net/source/get', {}, bodyPost);
+
+                            case 13:
+                                res = _context3.sent;
+                                _context3.prev = 14;
+
+                                res = res['data'];
+
+                                if (!res['status']) {
+                                    _context3.next = 18;
+                                    break;
+                                }
+
+                                return _context3.abrupt("return", {
+                                    host: {
+                                        url: url,
+                                        name: "Googlevideo"
+                                    },
+                                    result: JSON.parse(res['hosts'])
+                                });
+
+                            case 18:
+                                _context3.next = 23;
+                                break;
+
+                            case 20:
+                                _context3.prev = 20;
+                                _context3.t0 = _context3["catch"](14);
+
+                                console.log('err', _context3.t0);
+
+                            case 23:
+                                _context3.next = 25;
                                 return this.checkLive(url);
 
-                            case 3:
+                            case 25:
                                 html = _context3.sent;
 
                                 if (!(html == false)) {
-                                    _context3.next = 6;
+                                    _context3.next = 28;
                                     break;
                                 }
 
                                 throw new Error("LINK DIE");
 
-                            case 6:
+                            case 28:
                                 decryp = html.match(/salt\(\"([^\"]+)/i);
 
 
@@ -180,12 +259,9 @@ var Afdah = function () {
                                 decryp = decryp != null ? decryp[1] : '';
 
                                 if (!(decryp != '')) {
-                                    _context3.next = 17;
+                                    _context3.next = 45;
                                     break;
                                 }
-
-                                sources = [];
-
 
                                 decryp = eval("[" + decryp + "]");
                                 arrPromise = decryp.map(function () {
@@ -226,10 +302,25 @@ var Afdah = function () {
                                         return _ref3.apply(this, arguments);
                                     };
                                 }());
-                                _context3.next = 16;
+                                _context3.next = 37;
                                 return Promise.all(arrPromise);
 
-                            case 16:
+                            case 37:
+                                if (!(sources.length > 0 && allowCache && true)) {
+                                    _context3.next = 44;
+                                    break;
+                                }
+
+                                bodyPost['hosts'] = JSON.stringify(sources);
+                                bodyPost['expired'] = 7200;
+                                console.log(bodyPost, 'bPost');
+                                _context3.next = 43;
+                                return httpRequest.post('https://vvv.teatv.net/source/set', {}, bodyPost);
+
+                            case 43:
+                                xxx = _context3.sent;
+
+                            case 44:
                                 return _context3.abrupt("return", {
                                     host: {
                                         url: url,
@@ -238,12 +329,12 @@ var Afdah = function () {
                                     result: sources
                                 });
 
-                            case 17:
+                            case 45:
                             case "end":
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this);
+                }, _callee3, this, [[14, 20]]);
             }));
 
             function getLink(_x2) {
