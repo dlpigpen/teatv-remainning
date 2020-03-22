@@ -132,6 +132,8 @@ var Afdah = function () {
                                     };
                                 } catch (e) {}
 
+                                //console.log(headers);    
+
                                 _context.next = 5;
                                 return httpRequest.post(url, headers, { 'play': 'continue', 'x': 0, 'y': 0 });
 
@@ -175,7 +177,7 @@ var Afdah = function () {
                                 u = '';
                                 sources = [];
                                 bodyPost = {};
-                                embeds = ['/embed/', '/embed3/'];
+                                embeds = ['/embed/', '/embed3/', '/embed4/'];
                                 r = url.match(/\/embed\d?\/(\d+)/);
 
 
@@ -205,7 +207,7 @@ var Afdah = function () {
                                 };
 
                                 _context3.next = 13;
-                                return httpRequest.post('https://vvv.teatv.net/source/get', {}, bodyPost);
+                                return httpRequest.post('https://getaz.morphtv.club/source/get', {}, bodyPost);
 
                             case 13:
                                 res = _context3.sent;
@@ -315,7 +317,7 @@ var Afdah = function () {
                                 bodyPost['expired'] = 7200;
                                 console.log(bodyPost, 'bPost');
                                 _context3.next = 43;
-                                return httpRequest.post('https://vvv.teatv.net/source/set', {}, bodyPost);
+                                return httpRequest.post('https://getaz.morphtv.club/source/set', {}, bodyPost);
 
                             case 43:
                                 xxx = _context3.sent;
